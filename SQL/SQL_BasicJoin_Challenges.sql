@@ -1,0 +1,32 @@
+SELECT
+    HACKER_ID,
+    NAME,
+    TOTAL
+FROM
+    (SELECT
+        HACKER_ID,
+        NAME,
+        TOTAL,
+        COUNT(*) OVER(PARTITION BY RANK) AS COUNT_ON_RANK,
+        MAX(TOTAL) OVER(PARTITION BY 0) AS MAX_TOTAL
+    FROM
+        (SELECT
+            RANK() OVER(PARTITION BY 1 ORDER BY CHALLENGES.TOTAL DESC) AS RANK,
+            HACKERS.HACKER_ID,
+            HACKERS.NAME,
+            CASE WHEN CHALLENGES.TOTAL IS NULL THEN 0 ELSE CHALLENGES.TOTAL END AS TOTAL
+        FROM
+            HACKERS 
+        LEFT JOIN 
+        (   SELECT 
+                HACKER_ID, 
+                COUNT(DISTINCT CHALLENGE_ID) AS TOTAL
+            FROM
+                CHALLENGES
+            GROUP BY
+                HACKER_ID
+        ) AS CHALLENGES
+        ON
+            HACKERS.HACKER_ID = CHALLENGES.HACKER_ID) AS A) AS B
+WHERE
+    TOTAL = MAX_TOTAL OR COUNT_ON_RANK= 1

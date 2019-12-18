@@ -1,0 +1,15 @@
+SELECT DISTINCT
+    X.N,
+    CASE
+        WHEN X.C IS NULL THEN "Leaf"
+        WHEN X.C IS NOT NULL AND X.P IS NOT NULL THEN "Inner"
+        ELSE "Root"
+    END
+FROM
+(SELECT
+    A.*,
+    B.N AS C
+FROM
+    BST AS A LEFT JOIN BST AS B
+ON
+    A.N = B.P) AS X
