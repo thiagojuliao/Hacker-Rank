@@ -12,6 +12,6 @@ if __name__ == "__main__":
             if not list_of_indexes[ele]:
                 print(-1)
             else:
-                for indexes in list_of_indexes[ele]:
-                    print(indexes, end=" ")
+                for index in list_of_indexes[ele]:
+                    print(index, end=" ")
                 print()
