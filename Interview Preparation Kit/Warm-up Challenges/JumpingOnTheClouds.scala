@@ -2,10 +2,8 @@ package br.com.thiagojuliao.warmupchallenges
 
 import scala.io.StdIn.readLine
 
-object JumpingOnTheClouds extends App {
-  val n = readLine.toInt
-  val c = readLine.split(" ").map(_.trim.toInt)
-  
+object JumpingOnTheClouds {
+ 
   def getMinimumJumps(iter: Int, c: Array[Int], jumps: Int): Int = {
     if (iter == c.length - 3 || iter == c.length - 2) {
       jumps + 1
@@ -17,6 +15,11 @@ object JumpingOnTheClouds extends App {
     }
   }
   
-  val minimumJumps = getMinimumJumps(0, c, 0)
-  println(minimumJumps)
+  def main(args: Array[String]) = {
+	val n = readLine.toInt
+  	val c = readLine.split(" ").map(_.trim.toInt)
+  	
+  	val minimumJumps = getMinimumJumps(0, c, 0)
+  	println(minimumJumps)
+  }
 }

@@ -3,12 +3,7 @@ package br.com.thiagojuliao.arrays
 import scala.io.StdIn.readLine
 import java.util.Arrays
 
-object ArraysLeftRotation extends App {
-  val nd = readLine.split(" ")
-  val arr = readLine.split(" ").map(_.trim.toInt) 
-  
-  val n = nd(0).trim.toInt
-  val d = nd(1).trim.toInt
+object ArraysLeftRotation {
   
   def rotLeft(a: Array[Int], d: Int): Array[Int] = {
     val rotated = Array.ofDim[Int](a.length)
@@ -21,5 +16,14 @@ object ArraysLeftRotation extends App {
     rotated
   }
   
-  println(Arrays.toString(rotLeft(arr, d)))
+  
+  def main(args: Array[String]) = {
+	  val nd = readLine.split(" ")
+	  val arr = readLine.split(" ").map(_.trim.toInt) 
+	  
+	  val n = nd(0).trim.toInt
+	  val d = nd(1).trim.toInt
+	  
+	  println(Arrays.toString(rotLeft(arr, d)))
+  }
 }

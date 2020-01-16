@@ -2,9 +2,7 @@ package br.com.thiagojuliao.warmupchallenges
 
 import scala.io.StdIn.readLine
 
-object CountingValleys extends App {
-  val n = readLine.toInt
-  val steps = readLine.toCharArray()
+object CountingValleys {
   
   def countValley(iter: Int, steps: Array[Char], level: Int, 
       valleyStart: Boolean, countingValleys: Int): Int = {
@@ -23,6 +21,12 @@ object CountingValleys extends App {
     }
   }
   
-  val countingValleys = countValley(0, steps, 0, false, 0)
-  println(countingValleys)
+  
+  def main(args: Array[String]) = {
+	val n = readLine.toInt
+	val steps = readLine.toCharArray()
+	
+	val countingValleys = countValley(0, steps, 0, false, 0)
+  	println(countingValleys)
+  }
 }
